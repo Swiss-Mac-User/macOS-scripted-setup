@@ -5,7 +5,7 @@ Automate your macOS setup
 
 ## What is this?
 
-![Screenshot of macOS Scripted Setup in action](Swiss-Mac-User/macOS-scripted-setup/blob/installer/README_demo.png?raw=true)
+![Screenshot of macOS Scripted Setup in action](/blob/installer/README_demo.png?raw=true)
 
 The script is easy to use and can be run directly from the Terminal application, as a regular user or admin user. It automatically performs a series of commands to change default macOS settings and download applications. It's designed to be widely backward and forward compatible with various macOS versions.
 
@@ -15,11 +15,13 @@ The macOS Scripted Setup is **perfect for users who want to save time and avoid 
 
 ## How to use
 
-### Download macOS Scripted Setup
+<sub>P.s.: the scripts were tested successfully on Apple Silicon Mac and macOS 13 Ventura.</sub>
 
-* Download & extract «Source code (zip)» [from Releases](/Swiss-Mac-User/macOS-scripted-setup/releases) to your ~/Downloads/ folder
+### 📥 Download macOS Scripted Setup
 
-### Configure your preferences
+* Download & extract «Source code (zip)» [from Releases](/releases) to your ~/Downloads/ folder
+
+### ⚙️ Configure your preferences
 
 1. Duplicate the file `/macOS-scripted-setup/config.default.sh` as `config.sh`
 
@@ -27,7 +29,7 @@ The macOS Scripted Setup is **perfect for users who want to save time and avoid 
 
 3. …and change all settings to your personal preferences, using `true`/`false`.<br>(Note: if no `config.sh` is present, it will fall back to the default configs)
 
-### Start the scripted Setup
+### 🚀 Start the scripted Setup
 
 Maybe now is the time to go and get a coffee ☕️…
 
@@ -38,20 +40,19 @@ Maybe now is the time to go and get a coffee ☕️…
 ```bash
 cd ~/Downloads/macOS-scripted-setup/ && chmod +x ./run.sh && ./run.sh
 ```
+
 Watch the magic happen… and occasionally interact when instructions show up (e.g. sign-in on the Mac App Store-App).
 
-#### That's it - happy installation! :)
-
-<sub>P.s.: the scripts were tested successfully on Apple Silicon Mac and macOS 13 Ventura.</sub>
+#### ✨ That's it - happy installation! :)
 
 
 ## Requests for changes
 
 ### Issues and feature requests
-Report an [Issue](/Swiss-Mac-User/macOS-scripted-setup/issues) or start a [new Discussion](/Swiss-Mac-User/macOS-scripted-setup/discussions) for feedback or help.
+Report an [Issue](/issues) or start a [new Discussion](/discussions) for feedback or help.
 
 ### Contributions
-Feel free to [fork this project](/Swiss-Mac-User/macOS-scripted-setup/fork) and add Pull Requests for any suggested changes or additions!
+Feel free to [fork this project](/fork) and add Pull Requests for any suggested changes or additions!
 
 
 
@@ -69,4 +70,5 @@ A **BIG «THANK YOU»** to these inspiring and helfpful sources! 🫶 Make sure 
 * Patrick Force's approach with «[macOSa](rockholla/macosa)» (which was a bit too complex for my use case…)
 * Ryan Pavlick's helpful «[add_to_dock](ryanpavlick/add_to_dock)» bash scripts
 * Mathias Bynens's epic «[dotfiles](mathiasbynens/dotfiles)» (particularly its [.macos](mathiasbynens/dotfiles/blob/main/.macos))!
+* Big KUDOS to «[Homebrew](Homebrew/install)» and the «[Mac App Store command line interface](mas-cli/mas)»! 👏
 * MacRumors «[Dock to Show Running Apps Only](https://www.macrumors.com/how-to/macos-dock-show-active-apps/)», Ask Different «[identify if Filevault is enabled](https://apple.stackexchange.com/q/70969/86244)» and «[Check if OS X user is Administrator](https://apple.stackexchange.com/a/179531/86244)»
