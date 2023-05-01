@@ -5,7 +5,7 @@ Automate your macOS setup
 
 ## What is this?
 
-![Screenshot of macOS Scripted Setup in action](/blob/installer/README_demo.png?raw=true)
+![Screenshot of macOS Scripted Setup in action](/README_demo.png?raw=true)
 
 The script is easy to use and can be run directly from the Terminal application, as a regular user or admin user. It automatically performs a series of commands to change default macOS settings and download applications. It's designed to be widely backward and forward compatible with various macOS versions.
 
@@ -19,7 +19,7 @@ The macOS Scripted Setup is **perfect for users who want to save time and avoid 
 
 ### 📥 Download macOS Scripted Setup
 
-* Download & extract «Source code (zip)» [from Releases](/releases) to your ~/Downloads/ folder
+* Download & extract «Source code (zip)» [from Releases](/../../releases) to your ~/Downloads/ folder
 
 ### ⚙️ Configure your preferences
 
@@ -49,10 +49,10 @@ Watch the magic happen… and occasionally interact when instructions show up (e
 ## Requests for changes
 
 ### Issues and feature requests
-Report an [Issue](/issues) or start a [new Discussion](/discussions) for feedback or help.
+Report an [Issue](/../../issues) or start a [new Discussion](/../../discussions) for feedback or help.
 
 ### Contributions
-Feel free to [fork this project](/fork) and add Pull Requests for any suggested changes or additions!
+Feel free to [fork this project](/../../fork) and add Pull Requests for any suggested changes or additions!
 
 
 
@@ -66,9 +66,9 @@ If you want to run additional bash commands as part of the setup, you can duplic
 
 A **BIG «THANK YOU»** to these inspiring and helfpful sources! 🫶 Make sure to check them out and leave a kudos.
 
-* Yann Bertrand's awesome work with «[macOS-defaults](yannbertrand/macos-defaults)»
-* Patrick Force's approach with «[macOSa](rockholla/macosa)» (which was a bit too complex for my use case…)
-* Ryan Pavlick's helpful «[add_to_dock](ryanpavlick/add_to_dock)» bash scripts
-* Mathias Bynens's epic «[dotfiles](mathiasbynens/dotfiles)» (particularly its [.macos](mathiasbynens/dotfiles/blob/main/.macos))!
-* Big KUDOS to «[Homebrew](Homebrew/install)» and the «[Mac App Store command line interface](mas-cli/mas)»! 👏
+* Yann Bertrand's awesome work with «[macOS-defaults](https://github.com/yannbertrand/macos-defaults)»
+* Patrick Force's approach with «[macOSa](https://github.com/rockholla/macosa)» (which was a bit too complex for my use case…)
+* Ryan Pavlick's helpful «[add_to_dock](https://github.com/ryanpavlick/add_to_dock)» bash scripts
+* Mathias Bynens's epic «[dotfiles](https://github.com/mathiasbynens/dotfiles)» (particularly its [.macos](https://github.com/mathiasbynens/dotfiles/blob/main/.macos))!
+* Big KUDOS to «[Homebrew](https://github.com/Homebrew/install)» and the «[Mac App Store command line interface](https://github.com/mas-cli/mas)»! 👏
 * MacRumors «[Dock to Show Running Apps Only](https://www.macrumors.com/how-to/macos-dock-show-active-apps/)», Ask Different «[identify if Filevault is enabled](https://apple.stackexchange.com/q/70969/86244)» and «[Check if OS X user is Administrator](https://apple.stackexchange.com/a/179531/86244)»
