@@ -3,9 +3,9 @@
 # -----------------------------------------------
 #                  INSTRUCTIONS
 #                      ---
-#  Copy this file as a "myconfig.sh" and set your
+#  Copy this file as a "config.sh" and set your
 #  preferences for the options using "true" or "false"
-#  (otherwise the default settings will be used)
+#  (if there is no config.sh, the default file is used)
 #
 #
 #               TABLE OF CONTENTS

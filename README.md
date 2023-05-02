@@ -23,7 +23,7 @@ The macOS Scripted Setup is **perfect for users who want to save time and avoid 
 
 ### ⚙️ Configure your preferences
 
-1. Duplicate the file `/macOS-scripted-setup/config.default.sh` as `config.sh`
+1. Duplicate the file `config.default.sh` as `config.sh`
 
 2. Open `config.sh` with TextEdit
 
@@ -38,7 +38,7 @@ Maybe now is the time to go and get a coffee ☕️…
 2. Paste the following command to the Terminal.app, and start the setup by pressing `Return`:
 
 ```bash
-cd ~/Downloads/macOS-scripted-setup/ && chmod +x ./run.sh && ./run.sh
+cd ~/Downloads/macOS-scripted-setup-1.0.0/ && chmod +x ./run.sh && ./run.sh
 ```
 
 Watch the magic happen… and occasionally interact when instructions show up (e.g. sign-in on the Mac App Store-App).
@@ -59,6 +59,18 @@ Feel free to [fork this project](/../../fork) and add Pull Requests for any sugg
 ## Advanced settings
 
 If you want to run additional bash commands as part of the setup, you can duplicate the template-file `mycommands.template.sh` as `mycommands.sh`, and populate it with any commands. These custom commands will be executed LAST in the whole setup (see the `run.sh` file).
+
+### What is being done?
+
+The script changes the following settings:
+
+* FileVault, macOS Firewall, Mission Control, Control Centre, Finder, Dock, git, SSH Key, adds Userhome folders, Menu bar clock, Fast User Switching, and more.
+
+…and is capable of installing these Apps:
+
+* Xcode Command Line Tools, Homebrew, Rosetta 2, Keka, Quick Look plugins, 1Password, Safari extensions, Beyond Compare, Discord, Fig, Firefox, Google Chrome, Pixelmator Pro, Spotify, Strongbox, Telegram, Transmission, Tresorit, Warp, Xnapper, Git, Boop, Composer, Docker, SonarQube, Fork, GasMask, MAMP, Nova, Sequel Ace, and others.
+
+Some Apps are downloaded from the official websites, other are added through Homebrew or its Mac App Store CLI extension.
 
 ---
 
