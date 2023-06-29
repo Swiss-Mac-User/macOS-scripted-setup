@@ -81,6 +81,7 @@ installDiscord=false
 installFig=false
 installFirefox=false
 installGoogleChrome=false
+installMicrosoftOffice=false
 installPixelmator=false
 installSpotify=false
 installStrongbox=false

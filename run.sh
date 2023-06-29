@@ -404,6 +404,12 @@ if [ "$installVisualStudioCode" = true ]; then
     installAppVSCode
     showinfo "" "confirm"
 fi
+# -- Microsoft Office / Office 365 for Mac --
+if [ "$installMicrosoftOffice" = true ]; then
+    showinfo "Installing Microsoft Office for Mac:" "note"
+    installAppMicrosoftOffice
+    showinfo "" "confirm"
+fi
 # -- Xcode Command Line Tools --
 if [ "$installXcodeTools" = true ] || [ "$installHomebrew" = true ]; then
     # !! NOTE: Pre-requisite for Homebrew !!
