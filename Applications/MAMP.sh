@@ -13,7 +13,7 @@ function installAppMAMP(){
     fi
     # --> Download
     downloadFromUrl "$downloadUrl" "MAMP.pkg"
-    # --> Launch Installer
-    open "$HOME/Downloads/MAMP.pkg"
+    # --> Launch Package Installer
+    installer -pkg "$HOME/Downloads/MAMP.pkg" -target /
 }
 export -f installAppMAMP
