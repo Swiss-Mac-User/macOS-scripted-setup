@@ -398,6 +398,12 @@ if [ "$installWarp" = true ]; then
     installAppWarp
     showinfo "" "confirm"
 fi
+# -- Visual Studio Code --
+if [ "$installVisualStudioCode" = true ]; then
+    showinfo "Installing Visual Studio Code:" "note"
+    installAppVSCode
+    showinfo "" "confirm"
+fi
 # -- Xcode Command Line Tools --
 if [ "$installXcodeTools" = true ] || [ "$installHomebrew" = true ]; then
     # !! NOTE: Pre-requisite for Homebrew !!

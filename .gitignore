@@ -27,3 +27,4 @@ Temporary Items
 
 # Third-party Application files and folder
 .nova/
+*.code-workspace

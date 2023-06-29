@@ -87,6 +87,7 @@ installStrongbox=false
 installTelegram=false
 installTransmission=false
 installTresorit=false
+installVisualStudioCode=false
 installWarp=false
 installXnapper=false
 
