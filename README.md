@@ -19,7 +19,13 @@ The macOS Scripted Setup is **perfect for users who want to save time and avoid 
 
 ### 📥 Download macOS Scripted Setup
 
-* Download & extract «Source code (zip)» [from Releases](/../../releases) to your ~/Downloads/ folder
+Fast and easy download with this command in the `Terminal.app`:
+
+```bash
+curl -SL "https://github.com/Swiss-Mac-User/macOS-scripted-setup/archive/refs/heads/installer.zip" | tar xz -C "$HOME/Downloads" && open "$HOME/Downloads/macOS-scripted-setup-installer"
+```
+
+Alternatively you can manually download & extract the latest «Source code (zip)» [from Releases](/../../releases) to your `~/Downloads/` folder.
 
 ### ⚙️ Configure your preferences
 
