@@ -89,6 +89,7 @@ installTelegram=false
 installTransmission=false
 installTresorit=false
 installVisualStudioCode=false
+installVLC=false
 installWarp=false
 installXnapper=false
 

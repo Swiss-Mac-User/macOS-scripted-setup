@@ -410,6 +410,12 @@ if [ "$installMicrosoftOffice" = true ]; then
     installAppMicrosoftOffice
     showinfo "" "confirm"
 fi
+# -- VLC Media Player --
+if [ "$installVLC" = true ]; then
+    showinfo "Installing VLC Media Player:" "note"
+    installAppVLC
+    showinfo "" "confirm"
+fi
 # -- Xcode Command Line Tools --
 if [ "$installXcodeTools" = true ] || [ "$installHomebrew" = true ]; then
     # !! NOTE: Pre-requisite for Homebrew !!
