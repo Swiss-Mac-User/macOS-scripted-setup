@@ -44,7 +44,7 @@ Maybe now is the time to go and get a coffee ☕️…
 2. Paste the following command to the Terminal.app, and start the setup by pressing `Return`:
 
 ```bash
-cd ~/Downloads/macOS-scripted-setup-1.0.0/ && chmod +x ./run.sh && ./run.sh
+cd ~/Downloads/macOS-scripted-setup-installer/ && chmod +x ./run.sh && ./run.sh
 ```
 
 Watch the magic happen… and occasionally interact when instructions show up (e.g. sign-in on the Mac App Store-App).
