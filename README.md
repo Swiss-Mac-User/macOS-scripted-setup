@@ -80,7 +80,11 @@ Some Apps are downloaded from the official websites, other are added through Hom
 
 ---
 
-## Inspiration and Kudos
+<p align="center"><a href="https://bmc.link/swissmacuser/">
+    <img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Support this project with a Coffee." height="40" width="172">
+</a></p>
+
+### Inspiration and Kudos
 
 A **BIG «THANK YOU»** to these inspiring and helfpful sources! 🫶 Make sure to check them out and leave a kudos.
 
