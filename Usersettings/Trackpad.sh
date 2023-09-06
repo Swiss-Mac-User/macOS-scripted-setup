@@ -9,3 +9,11 @@ function enableTrackpadClicking(){
 	defaults write com.apple.AppleMultitouchTrackpad "TrackpadRightClick" -int 1
 }
 export -f enableTrackpadClicking
+
+# --> Increase Mouse speed on Trackpads and Mouses
+function increaseMouseSpeed(){
+	# -g = Setting is in .GlobalPreferences.plist
+	defaults write -g com.apple.trackpad.scaling -int 2
+	defaults write -g com.apple.mouse.scaling -float 1.5
+}
+export -f increaseMouseSpeed
