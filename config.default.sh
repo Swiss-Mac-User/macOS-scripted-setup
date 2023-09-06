@@ -16,6 +16,7 @@
 #   |- 1.3 AirDrop
 #   |_ 1.4 System Updates
 #   |_ 1.5 Performance
+#   |_ 1.6 System boot
 #
 #  2. Applications
 #   |- 2.1 Remove Applications
@@ -23,6 +24,7 @@
 #   |- 2.3 Finder Extensions
 #   |- 2.4 Application installations
 #   |_ 2.5 Web Development Suite
+#   |_ 2.6 Mac Gaming
 #
 #  3. User Settings
 #   |- 3.1 Layout / User Interface
@@ -53,6 +55,9 @@ installSystemUpdates=true
 
 # -- 1.5 Performance settings --
 betterApplicationPerformance=true
+
+# -- 1.6 System boot up --
+playMacStartupSound=true
 
 
 # ------------------------------
@@ -108,6 +113,9 @@ installMAMP=false
 installNova=false
 installSequelAce=false
 
+# -- 2.6 Mac Gaming Apps and Games --
+installSteam=false
+installWhisky=false
 
 # ------------------------------
 #     3. User and App Settings
@@ -123,6 +131,7 @@ disableAnnoyingTextcorrections=true
 useRealNamesForContacts=true
 enableTrackpadClicks=true # <-- only applied on MacBooks (MBA, MBP)
 showBatteryPercentage=true # <-- only applied on MacBooks (MBA, MBP)
+fasterMouseCursor=true
 
 # -- 3.2 macOS Finder customizations --
 customizeFinder=true # <-- If false, below settings will have NO effect
@@ -135,12 +144,18 @@ beautifyDock=true
 minimalDock=false
 
 # -- 3.4 User Home folder --
-addUserApplicationsFolder=true
-addUserGamesFolder=true
-addUserWebsitesFolder=true
 showLibraryFolder=true
+addUserApplicationsFolder=true
+addUserWebsitesFolder=true
+# -- 3.4.1 «Games» folder --
+addUserGamesFolder=true
 useCustomGamesFolderIcon=true # <-- Requires Games Folder (addUserGamesFolder=TRUE)
 useCustomGamesFolderIconURL='https://swissmacuser.ch/wp-content/uploads/2021/06/Games-Folder-Icon-macOS-12-Monterey-detailed.png'
+# -- 3.4.2 Wallpapers (Desktop Pictures) --
+downloadWallpapers=true # <-- Required to download any Wallpapers
+dynamicWallpaperExodus=false
+dynamicWallpaperFuji=false
+dynamicWallpaperISS=false
 
 # -- 3.5 Terminal app settings --
 enableTerminalUtf8=true

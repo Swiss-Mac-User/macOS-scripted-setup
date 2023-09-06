@@ -72,6 +72,11 @@ if [ "$enableScreensaverPassword" = true ]; then
     enableUserpasswordOnScreensaver
     showinfo "" "confirm"
 fi
+if [ "$playMacStartupSound" = true ]; then
+    showinfo "Enabling the iconic Startup Chime on your Mac:" "note"
+    enableStartupChime
+    showinfo "" "confirm"
+fi
 
 
 
@@ -153,6 +158,11 @@ fi
 if [ "$enableTrackpadClicks" = true ] && checkIfMacIsPortable; then
     showinfo "Enable Tap to Click on the Trackpad:" "note"
     enableTrackpadClicking
+    showinfo "" "confirm"
+fi
+if [ "$fasterMouseCursor" = true ]; then
+    showinfo "Speedup Cursor on Trackpads and Mouses:" "note"
+    increaseMouseSpeed
     showinfo "" "confirm"
 fi
 
@@ -288,6 +298,26 @@ if [ "$addUserGamesFolder" = true ]; then
     createUserFolderGames
     showinfo "" "confirm"
 fi
+# --> Desktop Pictures
+if [ "$downloadWallpapers" = true ]; then
+    showinfo "Adding Desktop Pictures folder to userhome ~/Pictures/:" "note"
+    createUserFolderDesktopPictures
+    showinfo "" "confirm"
+
+    if [ "$dynamicWallpaperExodus" = true ]; then
+        showinfo "...downloading «Exodus» wallpaper to ~/Pictures/Desktop Pictures/" "note"
+        downloadWallpaperExodus
+    fi
+    if [ "$dynamicWallpaperFuji" = true ]; then
+        showinfo "...downloading «Fuji» wallpaper to ~/Pictures/Desktop Pictures/" "note"
+        downloadWallpaperFuji
+    fi
+    if [ "$dynamicWallpaperISS" = true ]; then
+        showinfo "...downloading «ISS» wallpaper to ~/Pictures/Desktop Pictures/" "note"
+        downloadWallpaperISS
+    fi
+    showinfo "" "confirm"
+fi
 
 
 
@@ -414,6 +444,18 @@ fi
 if [ "$installVLC" = true ]; then
     showinfo "Installing VLC Media Player:" "note"
     installAppVLC
+    showinfo "" "confirm"
+fi
+# -- Steam --
+if [ "$installSteam" = true ]; then
+    showinfo "Installing Steam:" "note"
+    installAppSteam
+    showinfo "" "confirm"
+fi
+# -- Whisky --
+if [ "$installWhisky" = true ]; then
+    showinfo "Installing Whisky:" "note"
+    installAppWhisky
     showinfo "" "confirm"
 fi
 # -- Xcode Command Line Tools --
