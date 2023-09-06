@@ -122,6 +122,14 @@ function checkIfAppStoreAuthenticated(){
 }
 export -f checkIfAppStoreAuthenticated
 
+# Get logged-in user's Username
+function getUsername(){
+    local whoami="$(id -un)"
+    echo whoami
+    return 0
+}
+export -f getUsername
+
 # Check if current User is in admin group
 # Source: https://apple.stackexchange.com/a/179531/86244
 function checkIfUserIsAdmin(){
