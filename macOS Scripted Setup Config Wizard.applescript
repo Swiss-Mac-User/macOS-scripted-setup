@@ -5,7 +5,7 @@
 -- --------------------------------------------------
 -- Name: 			Config Wizard macOS Scripted Setup
 -- Identifier: 		com.apple.ScriptEditor.id.macOSScriptedSetupConfigHelper
--- Short Version: 	1.0
+-- Short Version: 	1.0.1
 -- Bundle Version: 	2
 -- Copyright: 		© 2026 github.com/Swiss-Mac-User/macOS-scripted-setup
 
@@ -108,9 +108,20 @@ end try
 -- ==================================================
 -- Backup existing config files
 my step("Checking to backup existing config files...")
+
+-- Check file existence: coercing to alias throws if the file is absent, succeeds if present
+set configExists to false
+try
+	set configExists to ((POSIX file configPath) as alias) is not missing value
+end try
+set rerunExists to false
+try
+	set rerunExists to ((POSIX file configRerunPath) as alias) is not missing value
+end try
+
 tell application "System Events"
 	-- User defined config.sh
-	if exists (configPath) then
+	if configExists then
 		tell me to set progress additional description to "Backing up existing config.sh..."
 		try
 			set backupName to "config-" & dateStr & "_" & timeStr & ".sh"
@@ -119,7 +130,7 @@ tell application "System Events"
 		end try
 	end if
 	-- Partial installation statefile config.rerun.sh
-	if exists (configRerunPath) then
+	if rerunExists then
 		tell me
 			set rerunChoice to display dialog textRerunSetup with title titleWelcome Â
 				buttons {"Back up & Start Wizard", btnLaunch} default button btnLaunch
