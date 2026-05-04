@@ -21,3 +21,9 @@ function useFnKeyFor(){
     fi
 }
 export -f useFnKeyFor
+
+# Move selected element focus with Tab / Shift Tab
+function useTabForElementFocus(){
+    defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
+}
+export -f useTabForElementFocus

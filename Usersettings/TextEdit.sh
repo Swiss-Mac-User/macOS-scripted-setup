@@ -27,3 +27,10 @@ function disableTextPeriodSubstitution(){
     defaults write NSGlobalDomain "NSAutomaticPeriodSubstitutionEnabled" -bool FALSE
 }
 export -f disableTextPeriodSubstitution
+
+# Disable Period Substitution with double spaces
+# Source: https://github.com/yannbertrand/macos-defaults/pull/375
+function disablePeriodSubstitution(){
+    defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool FALSE
+}
+export -f disablePeriodSubstitution
