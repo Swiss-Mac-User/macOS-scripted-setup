@@ -2,7 +2,7 @@
 
 function brewinstallAppSyntaxHighlight(){
     # --> Installation
-    brew install --cask --no-quarantine syntax-highlight
+    brew install syntax-highlight
     # --> Open App (hidden)
     open -gj "/Applications/Syntax Highlight.app"
 }
