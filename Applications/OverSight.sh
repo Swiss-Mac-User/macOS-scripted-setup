@@ -2,7 +2,7 @@
 
 function installAppOverSight(){
     # --> Version to use (default: latest)
-    local version="2.3.0"
+    local version="2.4.0"
     # --> Download & Unzip
     downloadFromUrl "https://github.com/objective-see/OverSight/releases/latest/download/OverSight_$version.zip" "OverSight.zip"
     # --> Unzip

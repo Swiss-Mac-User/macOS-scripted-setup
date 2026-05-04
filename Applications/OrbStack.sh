@@ -2,21 +2,23 @@
 
 function installAppOrbStack(){
     # --> Set Download URL
-    if checkIfAppleSilicion; then
+    if checkIfAppleSilicon; then
         # ...for ARM-based Apple Silicon Macs
-        local downloadUrl="https://orbstack.dev/download/beta/latest/arm64"
+        local downloadUrl="https://orbstack.dev/download/stable/latest/arm64"
     else
         # ...for Intel-based Macs / Universal (Fallback)
-        local downloadUrl="https://orbstack.dev/download/beta/latest/amd64"
+        local downloadUrl="https://orbstack.dev/download/stable/latest/amd64"
     fi
     # --> Download
     downloadFromUrl "$downloadUrl" "OrbStack.dmg"
-    # --> Mount & copy
+    # --> Mount, copy & unmount
     # (Cannot use unmountFile() function due to Volume having a different name than the App)
+    local downloadFolder="$HOME/Downloads/"
     hdiutil attach "$downloadFolder/OrbStack.dmg" -quiet
-    cp -R /Volumes/Install\ OrbStack\ v*/OrbStack.app "$downloadFolder"
-    # --> Unmount & move
-    hdiutil unmount /Volumes/Install\ OrbStack\ v* -force -quiet
+    local orbVolume=(/Volumes/Install\ OrbStack\ v*/)
+    ditto "${orbVolume[1]}OrbStack.app" "$downloadFolder/OrbStack.app"
+    hdiutil unmount "${orbVolume[1]}" -force -quiet
+    # --> Move
     moveApplication "OrbStack.app"
 }
 export -f installAppOrbStack

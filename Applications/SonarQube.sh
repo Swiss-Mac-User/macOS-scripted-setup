@@ -5,7 +5,7 @@ function brewinstallAppSonarQube(){
 	brew install sonar-scanner
 
 	# --> Install SonarQube
-	if ! checkIfAppleSilicion; then
+	if ! checkIfAppleSilicon; then
 		# ...for Intel-based Macs
 		SQdockerImage='sonarqube'
 		docker pull $SQdockerImage

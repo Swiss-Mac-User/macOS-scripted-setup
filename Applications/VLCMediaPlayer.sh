@@ -8,7 +8,7 @@ function installAppVLC(){
         return 1 # error
     else
         # --> Set Download URL
-        if checkIfAppleSilicion; then
+        if checkIfAppleSilicon; then
             # ...for ARM-based Apple Silicon Macs
             local downloadUrl="http://get.videolan.org/vlc/$version/macosx/vlc-$version-arm64.dmg"
         else
@@ -16,14 +16,14 @@ function installAppVLC(){
             local downloadUrl="http://get.videolan.org/vlc/$version/macosx/vlc-$version-intel64.dmg"
         fi
         # --> Download
-        local downloadFolder="$HOME/Downloads/"
         downloadFromUrl "$downloadUrl" "VLC.dmg"
-        # --> Mount & copy
-        # (Cannot use unmountFile() function due to VLC Volume having a different name than the App)
+        # --> Mount, copy & unmount
+        # (Cannot use unmountFile() — volume name differs from app name)
+        local downloadFolder="$HOME/Downloads/"
         hdiutil attach "$downloadFolder/VLC.dmg" -quiet
-        cp -r "/Volumes/VLC media player/VLC.app" "$downloadFolder"
-        # --> Unmount & move
+        ditto "/Volumes/VLC media player/VLC.app" "$downloadFolder/VLC.app"
         hdiutil unmount "/Volumes/VLC media player" -force -quiet
+        # --> Move
         moveApplication "VLC.app"
     fi
 }

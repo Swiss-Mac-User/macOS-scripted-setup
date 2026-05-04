@@ -4,7 +4,7 @@ function installAppMAMP(){
     # --> MAMP version to use
     local version="6.9"
     # --> Set Download URL
-    if checkIfAppleSilicion; then
+    if checkIfAppleSilicon; then
         # ...for ARM-based Apple Silicon Macs
         local downloadUrl="https://downloads.mamp.info/MAMP-PRO/releases/$version/MAMP_MAMP_PRO_$version-M1-arm.pkg"
     else
