@@ -29,7 +29,7 @@ export -f dimHiddenAppsInDock
 
 # --> Show indicator for running Apps
 function indicateRunningAppsInDock(){
-    if checkIfNotEmpty "$1" && "$1" == FALSE; then
+    if checkIfNotEmpty "$1" && [[ "$1" == "FALSE" ]]; then
         local value=FALSE
     else
         local value=TRUE
@@ -56,10 +56,12 @@ function addAppToDock() {
     local app_name="$1"
     local launchservices_path="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister"
     local app_path=$($launchservices_path -dump | grep -o "/.*$app_name.app" | grep -v -E "Backups|Caches|TimeMachine|Temporary|/Volumes/$app_name" | uniq | sort | head -n1)
+    local app_url="file://${app_path%/}/"
+    local app_label="${app_path:t:r}"
     if open -Ra "$app_path"; then
-       defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app_path</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+        defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>${app_url}</string><key>_CFURLStringType</key><integer>15</integer></dict><key>file-label</key><string>${app_label}</string></dict><key>tile-type</key><string>file-tile</string></dict>"
     else
-       showinfo "Application not found: $1\n$app_path" "error"
+        showinfo "Application not found: $1\n$app_path" "error"
     fi
 }
 export -f addAppToDock
@@ -67,7 +69,7 @@ export -f addAppToDock
 # Add an empty space to the macOS Dock
 # Source: https://github.com/rpavlick/add_to_dock
 function addSpacerToDock() {
-    defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'
+    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-label</key><string></string></dict><key>tile-type</key><string>spacer-tile</string></dict>"
 }
 export -f addSpacerToDock
 
