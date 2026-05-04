@@ -142,9 +142,12 @@ export -f showVolumeIconsOnDesktop
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 function enableSnapToGrid(){
-    /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" $HOME/Library/Preferences/com.apple.finder.plist
-    /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" $HOME/Library/Preferences/com.apple.finder.plist
-    /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" $HOME/Library/Preferences/com.apple.finder.plist
+    /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" "$HOME/Library/Preferences/com.apple.finder.plist" 2>/dev/null \
+        || /usr/libexec/PlistBuddy -c "Add :DesktopViewSettings:IconViewSettings:arrangeBy string grid" "$HOME/Library/Preferences/com.apple.finder.plist"
+    /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" "$HOME/Library/Preferences/com.apple.finder.plist" 2>/dev/null \
+        || /usr/libexec/PlistBuddy -c "Add :FK_StandardViewSettings:IconViewSettings:arrangeBy string grid" "$HOME/Library/Preferences/com.apple.finder.plist"
+    /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" "$HOME/Library/Preferences/com.apple.finder.plist" 2>/dev/null \
+        || /usr/libexec/PlistBuddy -c "Add :StandardViewSettings:IconViewSettings:arrangeBy string grid" "$HOME/Library/Preferences/com.apple.finder.plist"
 }
 export -f enableSnapToGrid
 
@@ -162,6 +165,9 @@ export -f enableTrashAutoremove30days
 
 # Add Folder settings (.DS_Store files)
 function updateApplicationsFolderListColumns(){
+    if ! checkIfFileExists "$HOME/Applications"; then
+        return 0
+    fi
     if ! checkIfFileExists "$HOME/Applications/.DS_Store"; then
         touch "$HOME/Applications/.DS_Store"
     fi
