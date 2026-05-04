@@ -23,16 +23,27 @@
 #   |- 2.2 Required Apps
 #   |- 2.3 Finder Extensions
 #   |- 2.4 Application installations
-#   |_ 2.5 Web Development Suite
+#   |- 2.5 Development Tools
+#   |   |_ 2.5.1 Web Development Suite
 #   |_ 2.6 Mac Gaming
 #
 #  3. User Settings
 #   |- 3.1 Layout / User Interface
+#   |   |- 3.1.1 Menu Bar
+#   |   |- 3.1.2 Window handling
+#   |   |- 3.1.3 Text handling
+#   |   |- 3.1.4 Keyboard & Mouse
+#   |   |- 3.1.5 Apple Apps
 #   |- 3.2 Finder
+#   |   |- 3.2.1 Files
+#   |   |_ 3.2.2 Screenshots
 #   |- 3.3 Dock
 #   |- 3.4 User Home
+#   |   |_ 3.4.1 Wallpapers (Desktop Pictures)
 #   |- 3.5 Terminal
-#   |_ 3.6 Application Hardening
+#   |- 3.6 Application Hardening
+#   |- 3.7 Night Shift
+#   |_ 3.8 Display
 #
 
 # ------------------------------
@@ -71,31 +82,36 @@ removeiMovie=false
 # (others have dependencies for these)
 installXcodeTools=false
 installHomebrew=true
-installAppStoreApps=true # <-- requires Homebrew=TRUE
+# (!) Requires Homebrew: installHomebrew=TRUE
+installAppStoreApps=true
 installRosetta=false
 
 # -- 2.3 Install Finder Extensions --
 installKeka=true
-installSyntaxHighlightQuickLook=true
+installQuickLookPlugins=true
 
 # -- 2.4 Install Applications --
 install1Password=false
 installAdGuardSafari=true
-installAlDente=false # <-- only supported on MacBooks (MBA, MBP)
+installBonjourrStartpageForSafari=true
+# (!) installAlDente: Only supported on MacBooks (MBA, MBP)
+installAlDente=false
 installBeyondCompare=false
-installBraveBrowser=false
+installBoop=false
 installDiscord=false
 installEqMac=false
 installFigma=false
-installFirefox=false
-installGoogleChrome=false
+installFork=false
 installGrandPerspective=false
+installHalloyIRC=false
 installLinearMouse=false
 installMacsFanControl=false
 installMicrosoftOffice=false
+installNotion=false
 installNova=false
 installOverSight=true
 installPixelmator=false
+installSentinel=true
 installSpotify=false
 installStrongbox=false
 installTelegram=false
@@ -105,26 +121,36 @@ installVisualStudioCode=false
 installVLC=false
 installWarp=false
 installXnapper=false
+# -- 2.4.1 Web Browsers --
+installBraveBrowser=false
+installFirefoxBrowser=false
+installGoogleChromeBrowser=false
 
-# -- 2.5 Web Development Suite --
-installWebdevTools=false # <-- When FALSE then all below steps are SKIPPED
+# -- 2.5 Development Tools --
+# (i) gitUsername = visible Display Name; gitUseremail = visible Email address with git
 installGit=false
-gitUsername='' # <-- Name to use with Git
-gitUseremail='' # <-- Email to use with Git
-installBoop=false
-installComposer=false # <-- will also install PHP
-installDocker=false # <-- only installed when MAMP=FALSE
-useOrbStackOverDocker=false # <-- use OrbStack instead of Docker
-installFork=false
+gitUsername=''
+gitUseremail=''
+# -- 2.5.1 Web Development Suite --
+# (!) When FALSE then all below steps are SKIPPED
+installWebdevTools=false
+# (i) installComposer will also install local PHP
+installComposer=false
+# (!) Only installed when: MAMP=FALSE
+installDocker=false
+# (i) Use OrbStack instead of Docker
+useOrbStackOverDocker=false
 installGasMask=false
+installHedit=false
 installMAMP=false
+installNodejs=false
 installSequelAce=false
-installSonarQube=false # <-- only installed when Docker=TRUE
+# (!) Only installed when: Docker=TRUE
+installSonarQube=false
 
 # -- 2.6 Mac Gaming Apps and Games --
 installHeroicGamesLauncher=false
 installSteam=false
-installWhisky=false
 
 # ------------------------------
 #     3. User and App Settings
@@ -135,7 +161,8 @@ dateTimeInMenubar=true
 enableFastUserswitching=true
 useMissionControl=true
 disableTransparency=true
-showBatteryPercentage=true # <-- only applied on MacBooks (MBA, MBP)
+# (!) showBatteryPercentage: only applied on MacBooks (MBA, MBP)
+showBatteryPercentage=true
 # ---- 3.1.2 Window handling ----
 enableFullDraggableWindows=false
 showScrollbars=true
@@ -143,17 +170,26 @@ showScrollbars=true
 disableAnnoyingTextcorrections=true
 # ---- 3.1.4 Keyboard & Mouse ----
 disableNaturalScrolling=true
-enableTrackpadClicks=true # <-- only applied on MacBooks (MBA, MBP)
+# (!) enableTrackpadClicks: only applied on MacBooks (MBA, MBP)
+enableTrackpadClicks=true
 fasterMouseCursor=true
-fnKeyFunction='emoji' # Modes: off=Do nothing, emoji=Emojis & Symbols, language=Input sources, dictation=Start Dictation
+# (i) fnKeyFunction Modes: off=Do nothing, emoji=Emojis & Symbols, language=Input sources, dictation=Start Dictation
+fnKeyFunction='emoji'
+enableTabFocusChange=false
+disableDoubleSpacePeriod=true
 # ---- 3.1.5 Apple Apps ----
 useRealNamesForContacts=true
 showMusicNextSongPlaying=false
 showSubjectInMessagesApp=false
 
 # -- 3.2 macOS Finder customizations --
-customizeFinder=true # <-- If false, below settings will have NO effect
-useScreenshotsFormat='png' # Supported formats: bmp, gif, heic, jpg, jp2, tif, pict, pdf, png, tga, tiff
+# (!) If false, below settings will have NO effect
+customizeFinder=true
+# ---- 3.2.1 Files in Finder ----
+showFileExtensions=false
+# ---- 3.2.2 Screenshots ----
+# (i) Supported formats: bmp, gif, heic, jpg, jp2, tif, pict, pdf, png, tga, tiff
+useScreenshotsFormat='png'
 useScreenshotsNumericFilename=false
 
 # -- 3.3 macOS Dock optimizations --
@@ -165,23 +201,32 @@ minimalDock=false
 showLibraryFolder=true
 addUserApplicationsFolder=true
 addUserWebsitesFolder=true
-# ---- 3.4.1 «Games» folder ----
 addUserGamesFolder=true
-useCustomGamesFolderIcon=true # <-- Requires Games Folder (addUserGamesFolder=TRUE)
-useCustomGamesFolderIconURL='https://swissmacuser.ch/wp-content/uploads/2021/06/Games-Folder-Icon-macOS-12-Monterey-detailed.png'
-# ---- 3.4.2 Wallpapers (Desktop Pictures) ----
-downloadWallpapers=true # <-- Required to download any Wallpapers
+# ---- 3.4.1 Wallpapers (Desktop Pictures) ----
+# (i) Must be enabled to download any of the Wallpapers below
+downloadWallpapers=true
+dynamicWallpaperDesert=false
 dynamicWallpaperExodus=false
 dynamicWallpaperFuji=false
-dynamicWallpaperISS=false
+dynamicWallpaperFluted=false
+dynamicWallpaperHivemind=false
 
 # -- 3.5 Terminal app settings --
 enableTerminalUtf8=true
-useCustomTerminalTheme=false # <-- Requires the URL from next line to download .terminal Theme file
+# (i) Requires the URL from next line to download .terminal Theme file
+useCustomTerminalTheme=false
 useCustomTerminalThemeURL='https://gist.githubusercontent.com/oliveratgithub/c9dde424966a7b9b5b7e9d1c28bf8f2e/raw/'
-useCustomTerminalConfigurations=false # If true, a URL is required to download and apply .zhsrc commands
+# (i) If true, a URL is required to download and apply .zhsrc commands
+useCustomTerminalConfigurations=false
 useCustomTerminalConfigurationsURL=''
 
 # -- 3.6 Application Hardening --
 secureSafariBrowser=true
-removeTrashbinItemsPeriodically=true # Auto-remove items from Trash after 30 days
+# (i) Auto-remove items from Trash after 30 days
+removeTrashbinItemsPeriodically=true
+
+# -- 3.7 Night Shift --
+enableNightShift=true
+
+# -- 3.8 Display --
+enableAllResolutions=false

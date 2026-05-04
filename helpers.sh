@@ -1,5 +1,29 @@
 #!/usr/bin/env zsh
 
+# Check if a local path exists and is readable
+function checkIfFileExists(){
+    if [ -r "$1" ]; then
+        # Found (and readable)
+        return 0 # true
+    else
+        # Does not exist
+        return 1 # false
+    fi
+}
+export -f checkIfFileExists
+
+# Check if a variable is not empty and not whitespace
+function checkIfNotEmpty() {
+    if [ -n "$1" ]; then
+        # Is NOT empty
+        return 0 # true
+    else
+        # Is empty
+        return 1 # false
+    fi
+}
+export -f checkIfNotEmpty
+
 # Send a Beep to get attention in the Terminal
 function notify(){
     afplay /System/Library/Sounds/Blow.aiff
@@ -38,32 +62,111 @@ function showinfo(){
 }
 export -f showinfo
 
-# Check if a variable is not empty and not whitespace
-function checkIfNotEmpty() {
-    if [ -n "$1" ]; then
-        # Is NOT empty
-        return 0 # true
-    else
-        # Is empty
-        return 1 # false
-    fi
-}
-export -f checkIfNotEmpty
+# Ask user a yes/no question-prompt in the Terminal - and return 0 for yes, 1 for no
+function ask() {
+    local prompt="$1"
+    local response
 
-# Check if a local path exists and is readable
-function checkIfFileExists(){
-    if [ -r "$1" ]; then
-        # Found (and readable)
-        return 0 # true
+    while true; do
+        read "response?$prompt (Y=yes/N=no): "
+        case $response in
+            [Yy]* ) return 0;; # Yes=true
+            [Nn]* ) return 1;; # No=false
+            * ) echo "Please answer Y (for YES) or N (for NO).";;
+        esac
+    done
+}
+export -f ask
+
+# Return boolean config variable names from a config file
+function get_boolean_config_names() {
+    local source_config="$1"
+
+    if ! checkIfFileExists "$source_config"; then
+        return 1
+    fi
+
+    awk -F= '
+        /^[[:space:]]*[A-Za-z_][A-Za-z0-9_]*[[:space:]]*=/ {
+            key = $1
+            value = $2
+            sub(/[[:space:]]+$/, "", key)
+            sub(/^[[:space:]]+/, "", value)
+            sub(/[[:space:]]*(#.*)?$/, "", value)
+            gsub(/[[:space:]]/, "", value)
+            if (value == "true" || value == "false") {
+                print key
+            }
+        }
+    ' "$source_config"
+}
+export -f get_boolean_config_names
+
+# Load and/or crate a re-run config file
+function load_rerunconfig() {
+    local source_config="$1"
+
+    if checkIfFileExists "$rerunconfig" && [[ -s "$rerunconfig" ]]; then
+        showinfo "Loaded a previous setup progress ($rerunconfig)" "confirm"
     else
-        # Does not exist
-        return 1 # false
+        grep -v '^#' "$source_config" > "$rerunconfig"
+        showinfo "Added a setup progress store based on $source_config" "confirm"
     fi
 }
-export -f checkIfFileExists
+export -f load_rerunconfig
+
+# Remove an existing re-run config file (after successful setup)
+function discard_rerunconfig() {
+    if checkIfFileExists "$rerunconfig"; then
+        rm "$rerunconfig"
+        showinfo "Removed the setup progress storage file (config.rerun.sh)" "note"
+    fi
+}
+export -f discard_rerunconfig
+
+# Merge progress from re-run config with master config
+function set_installprogress() {
+    local config_var="$1"
+    local rerun_value
+    local current_value
+
+    # Read the value from the re-run config
+    rerun_value=$(grep "^$config_var=" "$rerunconfig" | cut -d'=' -f2 | tr -d '"' | xargs)
+
+    # If the value in the re-run config is false (= step already done), skip this install step
+    if [[ "$rerun_value" == "false" ]]; then
+        eval "current_value=\$$config_var"
+        eval "$config_var=false"
+        # Only report as "already done" if it was originally enabled in the loaded config
+        # (skip silently when the user simply configured it as false from the start)
+        if [[ "$current_value" == "true" ]]; then
+            showinfo "'$config_var' already done - setup will skip it" "note"
+        fi
+    fi
+}
+export -f set_installprogress
+
+# Store setup progress for re-runs
+function storeprogress() {
+    local installstep=$1
+    local configfile=$2
+
+    # Update progress in state file
+    if checkIfNotEmpty "$installstep" && checkIfNotEmpty "$configfile"; then
+        if checkIfFileExists "$configfile"; then
+            sed -i '' "s/^$installstep=true/$installstep=false/" "$configfile"
+        else
+            showinfo "Cannot store setup progress in $configfile" "error"
+        fi
+    else
+        showinfo "ABORTING SETUP: previous installation step failed. Try to re-run the setup." "shout"
+        exit 1 # STOP SETUP
+    fi
+}
+export -f storeprogress
 
 # Check if Mac is Apple Silicon (otherwise Intel x86)
-function checkIfAppleSilicion(){
+function checkIfAppleSilicon(){
     # Intel=x86_64 | AppleSilicon=arm64
     if uname -m | grep -q -w arm64; then
         return 0 # true
@@ -71,12 +174,12 @@ function checkIfAppleSilicion(){
         return 1 # false
     fi
 }
-export -f checkIfAppleSilicion
+export -f checkIfAppleSilicon
 
 # Check if Mac is portable
 # (MacBook, MacBook Air, MacBook Pro)
 function checkIfMacIsPortable(){
-    if system_profiler -detailLevel mini SPHardwareDataType | grep -q Book; then
+    if system_profiler -detailLevel mini SPHardwareDataType 2>/dev/null | grep -q MacBook; then
         return 0 # true
     else
         return 1 # false
@@ -84,48 +187,10 @@ function checkIfMacIsPortable(){
 }
 export -f checkIfMacIsPortable
 
-# Check if Xcode Command Line Tools are installed
-function checkIfXcodeInstalled(){
-    local XcodeCLTinstallPath="/Library/Developer/CommandLineTools"
-    if [ "$(xcode-select -p)" != "$XcodeCLTinstallPath" ]; then
-        # Not installed
-        return 1 # false
-    else
-        # Installed
-        return 0 # true
-    fi
-}
-export -f checkIfXcodeInstalled
-
-# Check if Homebrew is installed
-function checkIfHomebrewInstalled(){
-    local HomebrewInstallPath="/opt/homebrew/bin/brew"
-    if ! command -v brew &> /dev/null || [ "$(command -v brew)" != "$HomebrewInstallPath" ]; then
-        # Not installed
-        return 1 # false
-    else
-        # Installed
-        return 0 # true
-    fi
-}
-export -f checkIfHomebrewInstalled
-
-# Check if User has authenticated to App Store
-function checkIfAppStoreAuthenticated(){
-    if ! command -v mas &> /dev/null; then
-        # Not authenticated
-        return 1 # false
-    else
-        # Authenticated
-        return 0 # true
-    fi
-}
-export -f checkIfAppStoreAuthenticated
-
 # Get logged-in user's Username
 function getUsername(){
-    local whoami="$(id -un)"
-    echo whoami
+    local username="$(id -un)"
+    echo "$username"
     return 0
 }
 export -f getUsername
@@ -210,8 +275,8 @@ function unmountFile(){
         local appFilename="$2.app"
         # --> Mount Volume
         hdiutil attach "$filePath" -quiet
-        # --> Move to Applications (suppress errors)
-        cp -r "/Volumes/$2/$2.app" "$downloadFolder"
+        # --> Copy to Downloads
+        ditto "/Volumes/$2/$appFilename" "$downloadFolder$appFilename"
         # --> Unmount Volume
         hdiutil unmount "/Volumes/$2" -force -quiet
     else
