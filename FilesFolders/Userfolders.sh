@@ -22,11 +22,5 @@ function createUserFolderGames(){
     if ! checkIfFileExists "$HOME/Games"; then
         mkdir "$HOME/Games"
     fi
-
-    # --> Download Games folder icon
-    if [ "$useCustomGamesFolderIcon" = true ]; then
-        downloadFromUrl "$useCustomGamesFolderIconURL" "icon.png"
-        mv "$HOME/Downloads/icon.png" "$HOME/Games/foldericon.png"
-    fi
 }
 export -f createUserFolderGames
