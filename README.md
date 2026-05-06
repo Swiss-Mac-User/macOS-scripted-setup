@@ -122,7 +122,7 @@ Feel free to [fork this project](/../../fork) and add Pull Requests for any sugg
 
 ### Inspiration and Kudos
 
-A **BIG «THANK YOU»** to these inspiring and helfpful sources! 🫶 Make sure to check them out and leave a kudos.
+A **BIG «THANK YOU»** to these inspiring and helpful sources! 🫶 Make sure to check them out and leave a kudos.
 
 * Yann Bertrand's awesome work with «[macOS-defaults](https://github.com/yannbertrand/macos-defaults)»
 * Patrick Force's approach with «[macOSa](https://github.com/rockholla/macosa)» (which was a bit too complex for my use case…)
@@ -131,4 +131,4 @@ A **BIG «THANK YOU»** to these inspiring and helfpful sources! 🫶 Make sure 
 * Big KUDOS to «[Homebrew](https://github.com/Homebrew/install)» and the «[Mac App Store command line interface](https://github.com/mas-cli/mas)»! 👏
 * MacRumors «[Dock to Show Running Apps Only](https://www.macrumors.com/how-to/macos-dock-show-active-apps/)», Ask Different «[identify if Filevault is enabled](https://apple.stackexchange.com/q/70969/86244)» and «[Check if OS X user is Administrator](https://apple.stackexchange.com/a/179531/86244)»
 * The awesome Night Shift config tool «[nightlight](https://github.com/smudge/nightlight)»
-* @i1rr's helpful Mac «[Steam ARM64](https://github.com/i1rr/steam-arm64-mac)»-script for macOS
+* @i1rr's great Mac «[Steam ARM64](https://github.com/i1rr/steam-arm64-mac)»-script for macOS
